@@ -778,6 +778,18 @@ public class VncCanvas extends ImageView {
 	 */
 	private int pointerMask = MOUSE_BUTTON_NONE;
 	
+	private void sendMotionEvent(final MotionEvent e){
+		
+		try {
+			rfb.writeOpenChat();
+			rfb.writeChatMessage(""+e.toString());
+			rfb.writeCloseChat();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+	
 	/**
 	 * Convert a motion event to a format suitable for sending over the wire
 	 * @param evt motion event; x and y must already have been converted from screen coordinates
@@ -788,6 +800,7 @@ public class VncCanvas extends ImageView {
 	 */
 	public boolean processPointerEvent(MotionEvent evt,boolean downEvent)
 	{
+		sendMotionEvent(evt);
 		return processPointerEvent(evt,downEvent,cameraButtonDown);
 	}
 	
@@ -800,6 +813,7 @@ public class VncCanvas extends ImageView {
 	 * @return true if event was actually sent
 	 */
 	public boolean processPointerEvent(MotionEvent evt,boolean downEvent,boolean useRightButton) {
+		sendMotionEvent(evt);
 		return processPointerEvent((int)evt.getX(),(int)evt.getY(), evt.getAction(), evt.getMetaState(), downEvent, useRightButton);
 	}
 	
