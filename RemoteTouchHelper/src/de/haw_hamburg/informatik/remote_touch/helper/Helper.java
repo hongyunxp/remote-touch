@@ -72,7 +72,14 @@ public class Helper {
 				coords[0] = coord;
 			}
 		}
-		long downTimeOffset = jObj.getLong("eventTime") - jObj.getLong("downTime"); 
+		long downTimeOffset = jObj.getLong("eventTime") - jObj.getLong("downTime");
+		/* TODO calculating the time offset is not a goog solution. the downtime should be the same of all events in a row.
+		 * for an optimal use the events should be traced. then at the first occurency both down and event time
+		 * are set from uptime. and then in the follow up events the uptime is used for event time and the stored downtime 
+		 * for the downtime. but for this some identification of events is needed. 
+		 * first events can be identified with (eventTime == downTime)
+		 * */
+		
 		MotionEvent event = MotionEvent.obtain(
 				uptime + downTimeOffset, 
 				uptime,
