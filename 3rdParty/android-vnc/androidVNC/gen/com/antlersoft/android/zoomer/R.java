@@ -23,8 +23,9 @@ public final class R {
         public static final int btn_zoom_up_normal=0x7f020009;
         public static final int btn_zoom_up_pressed=0x7f02000a;
         public static final int btn_zoom_up_selected=0x7f02000b;
-        public static final int icon=0x7f02000c;
-        public static final int mouse_icon=0x7f02000d;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int icon=0x7f02000d;
+        public static final int mouse_icon=0x7f02000e;
     }
     public static final class id {
         public static final int LinearLayout01=0x7f060007;

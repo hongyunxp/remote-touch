@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package android.androidVNC;
+package de.haw_hamburg.informatik.remote_touch.helper;
 
 public final class R {
     public static final class attr {
