@@ -786,33 +786,15 @@ public class VncCanvas extends ImageView {
 		try {
 			rfb.writeOpenChat();
 			
-			JSONObject jObj = new JSONObject();
-			JSONObject obj = null;
 			try {
-				jObj.put("event",e);
-				String out = jObj.toString();
-				obj = new JSONObject(out);
-				Object ob = obj.get("event"); 
-				jObj.put("downTime",e.getDownTime());
-				jObj.put("eventTime",e.getEventTime());
-				jObj.put("action",e.getAction());
-				jObj.put("pointerCount",e.getPointerCount());				
-				
-				jObj.put("metaState",e.getMetaState());
-				jObj.put("xPrecision",e.getXPrecision());
-				jObj.put("yPrecision",e.getYPrecision());
-				jObj.put("deviceId",e.getDeviceId());
-				jObj.put("edgeFlags",e.getEdgeFlags());
-				jObj.put("source",e.getSource()); 
-				jObj.put("flags",e.getFlags());
-				MotionEvent.obtain(downTime, eventTime, action, pointerCount, pointerIds, 
-						pointerCoords, metaState, xPrecision, yPrecision, deviceId, edgeFlags, source, flags)
+				JSONObject jObj = Helper.CreateJSonObjectFromMotionEvent(e);
+				rfb.writeChatMessage(jObj.toString());
 			} catch (JSONException ex) {
 				ex.printStackTrace();
 			}
 			
 				
-			rfb.writeChatMessage(jObj.toString());
+
 			rfb.writeCloseChat();
 		} catch (Exception e1) {
 			e1.printStackTrace();

@@ -3,6 +3,7 @@
 	<name>androidVNC</name>
 	<comment></comment>
 	<projects>
+		<project>RemoteTouchHelper</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
