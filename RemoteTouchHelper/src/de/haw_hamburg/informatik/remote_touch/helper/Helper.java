@@ -81,7 +81,7 @@ public class Helper {
 		 * */
 		
 		MotionEvent event = MotionEvent.obtain(
-				uptime + downTimeOffset, 
+				uptime - downTimeOffset, 
 				uptime,
 				jObj.getInt("action"),
 				jObj.getInt("pointerCount"), 

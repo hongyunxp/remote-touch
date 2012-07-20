@@ -1,6 +1,6 @@
 package de.haw_hamburg.informatik.remote_touch;
 
-import org.json.JSONException;
+
 import org.json.JSONObject;
 
 import de.haw_hamburg.informatik.remote_touch.helper.Helper;
