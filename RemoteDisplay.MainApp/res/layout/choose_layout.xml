@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <FrameLayout android:id="@+id/mainPanel"
+     android:layout_width="fill_parent" android:layout_height="fill_parent" 
+     xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="top">
+        <ImageView android:src="@drawable/tab" android:id="@+id/imageView1" android:layout_gravity="center" android:layout_width="320dp" android:layout_height="200dp" android:tint="#B333"></ImageView>
+        <ImageView android:src="@drawable/tab" android:id="@+id/moveableImageView1" android:layout_width="320dp" android:layout_height="200dp" android:layout_marginLeft="30dp" android:layout_marginTop="30dp"></ImageView>
+        
+        <Button android:id="@+id/button1" android:onClick="ok_clicked" android:layout_width="wrap_content" android:text="OK" android:layout_height="wrap_content" android:layout_gravity="bottom"></Button>
+    </FrameLayout>
+ 
+
+<!-- 	<de.haw_hamburg.informatik.remote_display.core.ShareView 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/shareView1" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+		<LinearLayout 
+			android:id="@+id/linearLayout1"
+			android:orientation="vertical" 
+			android:layout_width="match_parent" 
+			android:layout_height="match_parent" android:weightSum="1">
+			<TextView  
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="Hello Share View"
+			    android:textSize="36px"/>
+			        
+		    <de.haw_hamburg.informatik.remote_display.core.TestView 
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content"
+			    android:text="TestView" 
+			    android:textSize="36px" />
+		    <Button android:layout_height="wrap_content" android:layout_weight="0.10" android:text="Button" android:id="@+id/button1" android:layout_width="137dp" android:onClick="buttonClick"></Button>
+		</LinearLayout>
+	</de.haw_hamburg.informatik.remote_display.core.ShareView>
+-->

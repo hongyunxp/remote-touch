@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroller"
+android:layout_height="match_parent" android:layout_width="match_parent">
+    <LinearLayout
+    	android:id="@+id/scrollContent" 
+    	android:orientation="vertical"
+        android:layout_width="835dp" android:layout_height="wrap_content">
+        
+        <Button android:id="@+id/button1" android:onClick="connectClicked" android:text="Start server" android:layout_height="wrap_content" android:layout_width="289dp" android:layout_weight="0.18"></Button>
+        <TextView android:text="hello" android:id="@+id/textView" android:layout_height="wrap_content" android:layout_weight="0.06" android:layout_width="194dp" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+        <FrameLayout android:id="@+id/frameLayout1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0.18">
+            
+            <LinearLayout android:id="@+id/linearLayout2" android:layout_width="match_parent" android:layout_height="match_parent">
+            <ToggleButton android:text="ToggleButton" android:id="@+id/toggleButton1" android:layout_width="207dp" android:layout_height="119dp"></ToggleButton>
+    		</LinearLayout>
+        </FrameLayout>
+       
+        <LinearLayout android:id="@+id/linearLayout1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0.18">
+            <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/radioGroup1" android:orientation="horizontal" android:layout_weight="0.01">
+                <RadioButton android:text="RadioButton" android:id="@+id/radio0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true"></RadioButton>
+                <RadioButton android:text="RadioButton" android:id="@+id/radio1" android:layout_width="wrap_content" android:layout_height="wrap_content"></RadioButton>
+                <RadioButton android:text="RadioButton" android:id="@+id/radio2" android:layout_width="wrap_content" android:layout_height="wrap_content"></RadioButton>
+            </RadioGroup>
+            <CheckBox android:text="CheckBox" android:layout_height="wrap_content" android:layout_weight="0.18" android:layout_width="wrap_content" android:id="@+id/checkBox1"></CheckBox>
+        </LinearLayout>
+        <RatingBar android:id="@+id/ratingBar1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.18"></RatingBar>
+        <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button2" android:layout_height="wrap_content"></Button>
+        <SeekBar android:id="@+id/seekBar1" android:layout_height="wrap_content" android:layout_width="260dp"></SeekBar>
+        <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button3" android:layout_height="wrap_content"></Button>
+        <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button6" android:layout_height="wrap_content"></Button>
+        <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button7" android:layout_height="wrap_content"></Button>
+        <ToggleButton android:layout_weight="0.18" android:layout_width="wrap_content" android:text="ToggleButton" android:id="@+id/toggleButton3" android:layout_height="wrap_content"></ToggleButton>
+        <CheckBox android:layout_weight="0.18" android:text="CheckBox" android:layout_width="wrap_content" android:id="@+id/checkBox2" android:layout_height="wrap_content"></CheckBox>
+        <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button5" android:layout_height="wrap_content"></Button>
+        <ToggleButton android:text="ToggleButton" android:id="@+id/toggleButton2" android:layout_width="207dp" android:layout_height="130dp"></ToggleButton>
+        <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button4" android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+</ScrollView>
