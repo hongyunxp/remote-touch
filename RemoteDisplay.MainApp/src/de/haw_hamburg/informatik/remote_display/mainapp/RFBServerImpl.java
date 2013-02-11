@@ -2,16 +2,19 @@ package de.haw_hamburg.informatik.remote_display.mainapp;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import de.haw_hamburg.informatik.remote_touch.helper.Helper;
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.MotionEvent.PointerCoords;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.ViewTreeObserver;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import gnu.rfb.Colour;
 import gnu.rfb.PixelFormat;
 import gnu.rfb.Rect;
@@ -377,13 +380,13 @@ public class RFBServerImpl implements RFBServer,ViewTreeObserver.OnGlobalFocusCh
 		int[] location = new int[2];
 		view.getLocationOnScreen(location);
 		int[] pixels = new int[cache.getWidth()* cache.getHeight()];
-		cache.getPixels(pixels, 0, cache.getWidth(), 0, 0, cache.getWidth(), cache.getHeight());
+		cache.getPixels(pixels, 0, cache.getWidth(), view.getLeft(),view.getTop(), cache.getWidth(), cache.getHeight());
 		Rect rect = Rect.encode(
 				client.getPreferredEncoding(), 
 				pixels, 
 				client.getPixelFormat(), 
 				cache.getWidth(),
-				0,0,
+				view.getLeft(),view.getTop(),
 				cache.getWidth(), 
 				cache.getHeight());
 		rect.transform(location[0],location[1]);
@@ -396,10 +399,68 @@ public class RFBServerImpl implements RFBServer,ViewTreeObserver.OnGlobalFocusCh
 		}
 		
 	}
+//	class EventDispatcher implements Runnable{
+//		private MotionEvent event;
+//		private ArrayList<View> hits;
+//		public EventDispatcher(MotionEvent e){
+//			event=e;
+//			hits = new ArrayList<View>();
+//		}
+//		public ArrayList<View> GetHits(){return hits;}
+//		public boolean isTarget(View view){
+//			android.graphics.Rect outRect = new android.graphics.Rect();
+//			view.getHitRect(outRect);
+//			for(int i=0;i<event.getPointerCount();i++){
+//				android.graphics.Rect pointerRect = new android.graphics.Rect();
+//				PointerCoords coords = new PointerCoords();
+//				event.getPointerCoords(i, coords);
+//				pointerRect.set(left, top, right, bottom);
+//			}
+//		}
+//		public synchronized void run(){
+//			ArrayList<View> touchables = host.getWindow().getDecorView().getTouchables();
+//			for(View view : touchables){
+//				view.getHitRect(outRect)
+//				if(view.onTouchEvent(event)){
+//					view.invalidate();view.gethit
+//					hits.add(view);
+//				}
+//			}
+//			
+//			//this.notify();
+//		}
+//	}
+	protected  void dispatchMotionEvent(RFBClient client, final MotionEvent e){
+		//ViewTools.findViewsForMotionEvent(e);
+		
+		final View view = ViewTools.findViewAt((int)e.getX(), (int)e.getY());
+		if(view == null)
+			return;
+		host.runOnUiThread(new Runnable(){@Override
+			public void run(){
+				view.dispatchTouchEvent(e);
+				view.invalidate();
+				//target.getViewTreeObserver().addOnPreDrawListener(new PreDrawListener(target,client,4));
+			}});
+		
+	}
+	
 	@Override
 	public void clientCutText(RFBClient client, String text) throws IOException {
-		// TODO Auto-generated method stub
-		
+		Log.d("RemoteTouch", "received cutTextMessage. message:\n"+text);
+		try{
+			JSONObject jsonMotion = new JSONObject(text);
+			MotionEvent motionEvent = Helper.CreateMotionEventFromJSonObject(jsonMotion);
+			dispatchMotionEvent(client, motionEvent);
+			sendWholeScreen(client);
+		}
+		catch(JSONException e){
+			//the text could not be parsed to a json object. message will be dropped.
+			Log.e(
+					"RemoteTouch", 
+					"message could not be parsed to JSON Object. Dropping message. message was:"+text,
+					e);
+		}
 	}
 	public class PreDrawListener implements ViewTreeObserver.OnPreDrawListener{
 		View target;

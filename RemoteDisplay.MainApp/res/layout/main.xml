@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroller"
 android:layout_height="match_parent" android:layout_width="match_parent">
+
     <LinearLayout
-    	android:id="@+id/scrollContent" 
-    	android:orientation="vertical"
-        android:layout_width="835dp" android:layout_height="wrap_content">
+        android:id="@+id/scrollContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
         
         <Button android:id="@+id/button1" android:onClick="connectClicked" android:text="Start server" android:layout_height="wrap_content" android:layout_width="289dp" android:layout_weight="0.18"></Button>
         <TextView android:text="hello" android:id="@+id/textView" android:layout_height="wrap_content" android:layout_weight="0.06" android:layout_width="194dp" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
@@ -29,6 +31,29 @@ android:layout_height="match_parent" android:layout_width="match_parent">
         <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button2" android:layout_height="wrap_content"></Button>
         <SeekBar android:id="@+id/seekBar1" android:layout_height="wrap_content" android:layout_width="260dp"></SeekBar>
         <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button3" android:layout_height="wrap_content"></Button>
+
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.18" >
+
+                    <android.gesture.GestureOverlayView
+                        android:id="@+id/gestureOverlayView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gestureStrokeType="multiple" >
+
+                                    <View
+            android:id="@+id/view1"
+            android:layout_width="380dip"
+            android:layout_height="380dip"
+            android:layout_weight="0.18" />
+                    </android.gesture.GestureOverlayView>
+
+        </FrameLayout>
+
         <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button6" android:layout_height="wrap_content"></Button>
         <Button android:layout_weight="0.18" android:text="Button" android:layout_width="wrap_content" android:id="@+id/button7" android:layout_height="wrap_content"></Button>
         <ToggleButton android:layout_weight="0.18" android:layout_width="wrap_content" android:text="ToggleButton" android:id="@+id/toggleButton3" android:layout_height="wrap_content"></ToggleButton>

@@ -1,9 +1,13 @@
 package de.haw_hamburg.informatik.remote_display.mainapp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import android.app.Activity;
 import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.MotionEvent.PointerCoords;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +20,29 @@ public class ViewTools {
 		host = act;
 		touchables = host.getWindow().getDecorView().getTouchables();
 		}
+	public static View[] findViewsForMotionEvent(MotionEvent mEvent){
+		touchables = host.getWindow().getDecorView().getTouchables();
+		Rect viewArea = new Rect();
+		int[] loc = new int[2];
+		ArrayList<View> views = new ArrayList<View>();
+		//check dimensions of touchable objects with coordinates.
+		for(View view :touchables){
+			view.getLocationOnScreen(loc);
+			viewArea.left = loc[0];
+			viewArea.top = loc[1];
+			viewArea.right = view.getWidth()  + loc[0];
+			viewArea.bottom = view.getHeight() + loc[1];
+			
+			PointerCoords coordinates = new PointerCoords();
+			for(int i=0;i<mEvent.getPointerCount();i++){
+				mEvent.getPointerCoords(i, coordinates);
+				if(viewArea.contains((int)coordinates.x, (int)coordinates.y))
+					views.add(view);
+			}
+		}
+		return (View[])views.toArray();
+	}
+	
 	public static View findViewAt(int x, int y){
 		//update touchables list
 		touchables = host.getWindow().getDecorView().getTouchables();
