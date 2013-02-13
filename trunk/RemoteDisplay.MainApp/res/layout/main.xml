@@ -10,12 +10,36 @@ android:layout_height="match_parent" android:layout_width="match_parent">
         android:layout_height="wrap_content"
         android:orientation="vertical" >
         
-        <Button android:id="@+id/button1" android:onClick="connectClicked" android:text="Start server" android:layout_height="wrap_content" android:layout_width="289dp" android:layout_weight="0.18"></Button>
-        <TextView android:text="hello" android:id="@+id/textView" android:layout_height="wrap_content" android:layout_weight="0.06" android:layout_width="194dp" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.18" >
+            <TextView android:text="Server:" 
+                android:id="@+id/textViewLabel" android:layout_height="wrap_content" 
+                android:layout_weight="0.06" android:layout_width="194dp" 
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>  
+              <TextView                   
+                  android:layout_marginTop="60dip"
+                  android:text="hello" android:id="@+id/textView" android:layout_height="wrap_content" android:layout_weight="0.06" android:layout_width="194dp" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+              <Button
+                  android:id="@+id/button1"
+                  android:layout_width="289dp"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="left"
+                  android:layout_marginTop="60dip"
+                  android:layout_weight="0.18"
+                  android:onClick="connectClicked"
+                  android:text="Start server" />
+            
+        </FrameLayout>
+
+
         <FrameLayout android:id="@+id/frameLayout1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0.18">
             
             <LinearLayout android:id="@+id/linearLayout2" android:layout_width="match_parent" android:layout_height="match_parent">
             <ToggleButton android:text="ToggleButton" android:id="@+id/toggleButton1" android:layout_width="207dp" android:layout_height="119dp"></ToggleButton>
+
     		</LinearLayout>
         </FrameLayout>
        
