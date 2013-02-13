@@ -162,7 +162,7 @@ public class VncCanvasActivity extends Activity {
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
-			showZoomer(false);
+//			showZoomer(false);
 			panner.start(-(velocityX / FLING_FACTOR),
 					-(velocityY / FLING_FACTOR), new Panner.VelocityUpdater() {
 
@@ -207,7 +207,7 @@ public class VncCanvasActivity extends Activity {
 		 */
 		@Override
 		public void onLongPress(MotionEvent e) {
-			showZoomer(true);
+//			showZoomer(true);
 			BCFactory.getInstance().getBCHaptic().performLongPressHaptic(
 					vncCanvas);
 			dragMode = true;
@@ -226,7 +226,7 @@ public class VncCanvasActivity extends Activity {
 				float distanceX, float distanceY) {
 			if (inScaling)
 				return false;
-			showZoomer(false);
+//			showZoomer(false);
 			return vncCanvas.pan((int) distanceX, (int) distanceY);
 		}
 
@@ -363,7 +363,7 @@ public class VncCanvasActivity extends Activity {
 		public void onLongPress(MotionEvent e) {
 			
 			
-			showZoomer(true);
+//			showZoomer(true);
 			BCFactory.getInstance().getBCHaptic().performLongPressHaptic(
 					vncCanvas);
 			dragMode = true;
@@ -389,7 +389,7 @@ public class VncCanvasActivity extends Activity {
 			{
 				if (inScaling)
 					return false;
-				showZoomer(false);
+//				showZoomer(false);
 				return vncCanvas.pan((int) distanceX, (int) distanceY);			
 			}
 			else
@@ -517,7 +517,7 @@ public class VncCanvasActivity extends Activity {
 			R.id.itemInputTouchPanTrackballMouse,
 			R.id.itemInputDPadPanTouchMouse, R.id.itemInputTouchPanZoomMouse };
 
-	ZoomControls zoomer;
+//	ZoomControls zoomer;
 	Panner panner;
 
 	@Override
@@ -606,58 +606,58 @@ public class VncCanvasActivity extends Activity {
 		setContentView(R.layout.canvas);
 
 		vncCanvas = (VncCanvas) findViewById(R.id.vnc_canvas);
-		zoomer = (ZoomControls) findViewById(R.id.zoomer);
+//		zoomer = (ZoomControls) findViewById(R.id.zoomer);
 
 		vncCanvas.initializeVncCanvas(connection, new Runnable() {
 			public void run() {
 				setModes();
 			}
 		});
-		zoomer.hide();
-		zoomer.setOnZoomInClickListener(new View.OnClickListener() {
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.view.View.OnClickListener#onClick(android.view.View)
-			 */
-			@Override
-			public void onClick(View v) {
-				showZoomer(true);
-				vncCanvas.scaling.zoomIn(VncCanvasActivity.this);
-
-			}
-
-		});
-		zoomer.setOnZoomOutClickListener(new View.OnClickListener() {
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.view.View.OnClickListener#onClick(android.view.View)
-			 */
-			@Override
-			public void onClick(View v) {
-				showZoomer(true);
-				vncCanvas.scaling.zoomOut(VncCanvasActivity.this);
-
-			}
-
-		});
-		zoomer.setOnZoomKeyboardClickListener(new View.OnClickListener() {
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.view.View.OnClickListener#onClick(android.view.View)
-			 */
-			@Override
-			public void onClick(View v) {
-              InputMethodManager inputMgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-              inputMgr.toggleSoftInput(0, 0);
-			}
-
-		});
+//		zoomer.hide();
+//		zoomer.setOnZoomInClickListener(new View.OnClickListener() {
+//
+//			/*
+//			 * (non-Javadoc)
+//			 * 
+//			 * @see android.view.View.OnClickListener#onClick(android.view.View)
+//			 */
+//			@Override
+//			public void onClick(View v) {
+//				showZoomer(true);
+//				vncCanvas.scaling.zoomIn(VncCanvasActivity.this);
+//
+//			}
+//
+//		});
+//		zoomer.setOnZoomOutClickListener(new View.OnClickListener() {
+//
+//			/*
+//			 * (non-Javadoc)
+//			 * 
+//			 * @see android.view.View.OnClickListener#onClick(android.view.View)
+//			 */
+//			@Override
+//			public void onClick(View v) {
+//				showZoomer(true);
+//				vncCanvas.scaling.zoomOut(VncCanvasActivity.this);
+//
+//			}
+//
+//		});
+//		zoomer.setOnZoomKeyboardClickListener(new View.OnClickListener() {
+//
+//			/*
+//			 * (non-Javadoc)
+//			 * 
+//			 * @see android.view.View.OnClickListener#onClick(android.view.View)
+//			 */
+//			@Override
+//			public void onClick(View v) {
+//              InputMethodManager inputMgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//              inputMgr.toggleSoftInput(0, 0);
+//			}
+//
+//		});
 		panner = new Panner(this, vncCanvas.handler);
 
 		inputHandler = getInputHandlerById(R.id.itemInputFitToScreen);
@@ -1104,25 +1104,25 @@ public class VncCanvasActivity extends Activity {
 
 	long hideZoomAfterMs;
 	static final long ZOOM_HIDE_DELAY_MS = 2500;
-	HideZoomRunnable hideZoomInstance = new HideZoomRunnable();
+//	HideZoomRunnable hideZoomInstance = new HideZoomRunnable();
 
-	private void showZoomer(boolean force) {
-		if (force || zoomer.getVisibility() != View.VISIBLE) {
-			zoomer.show();
-			hideZoomAfterMs = SystemClock.uptimeMillis() + ZOOM_HIDE_DELAY_MS;
-			vncCanvas.handler
-					.postAtTime(hideZoomInstance, hideZoomAfterMs + 10);
-		}
-	}
+//	private void showZoomer(boolean force) {
+//		if (force || zoomer.getVisibility() != View.VISIBLE) {
+//			zoomer.show();
+//			hideZoomAfterMs = SystemClock.uptimeMillis() + ZOOM_HIDE_DELAY_MS;
+//			vncCanvas.handler
+//					.postAtTime(hideZoomInstance, hideZoomAfterMs + 10);
+//		}
+//	}
 
-	private class HideZoomRunnable implements Runnable {
-		public void run() {
-			if (SystemClock.uptimeMillis() >= hideZoomAfterMs) {
-				zoomer.hide();
-			}
-		}
-
-	}
+//	private class HideZoomRunnable implements Runnable {
+//		public void run() {
+//			if (SystemClock.uptimeMillis() >= hideZoomAfterMs) {
+//				zoomer.hide();
+//			}
+//		}
+//
+//	}
 
 	/**
 	 * Touches and dpad (trackball) pan the screen

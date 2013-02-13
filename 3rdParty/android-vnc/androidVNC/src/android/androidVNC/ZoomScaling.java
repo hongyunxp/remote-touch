@@ -75,9 +75,9 @@ class ZoomScaling extends AbstractScaling {
 		if (scaling > 4.0)
 		{
 			scaling = (float)4.0;
-			activity.zoomer.setIsZoomInEnabled(false);
+//			activity.zoomer.setIsZoomInEnabled(false);
 		}
-		activity.zoomer.setIsZoomOutEnabled(true);
+//		activity.zoomer.setIsZoomOutEnabled(true);
 		matrix.postScale(scaling, scaling);
 		//Log.v(TAG,String.format("before set matrix scrollx = %d scrolly = %d", activity.vncCanvas.getScrollX(), activity.vncCanvas.getScrollY()));
 		activity.vncCanvas.setImageMatrix(matrix);
@@ -103,9 +103,9 @@ class ZoomScaling extends AbstractScaling {
 		if (scaling < minimumScale)
 		{
 			scaling = minimumScale;
-			activity.zoomer.setIsZoomOutEnabled(false);
+//			activity.zoomer.setIsZoomOutEnabled(false);
 		}
-		activity.zoomer.setIsZoomInEnabled(true);
+//		activity.zoomer.setIsZoomInEnabled(true);
 		matrix.postScale(scaling, scaling);
 		//Log.v(TAG,String.format("before set matrix scrollx = %d scrolly = %d", activity.vncCanvas.getScrollX(), activity.vncCanvas.getScrollY()));
 		activity.vncCanvas.setImageMatrix(matrix);
@@ -125,18 +125,18 @@ class ZoomScaling extends AbstractScaling {
 			if (newScale < minimumScale)
 			{
 				newScale = minimumScale;
-				activity.zoomer.setIsZoomOutEnabled(false);
+//				activity.zoomer.setIsZoomOutEnabled(false);
 			}
-			activity.zoomer.setIsZoomInEnabled(true);
+//			activity.zoomer.setIsZoomInEnabled(true);
 		}
 		else
 		{
 			if (newScale > 4)
 			{
 				newScale = 4;
-				activity.zoomer.setIsZoomInEnabled(false);
+//				activity.zoomer.setIsZoomInEnabled(false);
 			}
-			activity.zoomer.setIsZoomOutEnabled(true);
+//			activity.zoomer.setIsZoomOutEnabled(true);
 		}
 		// ax is the absolute x of the focus
 		int xPan = activity.vncCanvas.absoluteXPosition;

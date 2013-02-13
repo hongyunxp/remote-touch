@@ -205,12 +205,12 @@ public class androidVNC extends Activity {
 		ipText.setText(selected.getAddress());
 		portText.setText(Integer.toString(selected.getPort()));
 		if (selected.getKeepPassword() || selected.getPassword().length()>0) {
-			passwordText.setText(selected.getPassword());
+			passwordText.setText("12345678"/*selected.getPassword()*/);
 		}
 		groupForceFullScreen.check(selected.getForceFull()==BitmapImplHint.AUTO ? R.id.radioForceFullScreenAuto : (selected.getForceFull() == BitmapImplHint.FULL ? R.id.radioForceFullScreenOn : R.id.radioForceFullScreenOff));
 		checkboxKeepPassword.setChecked(selected.getKeepPassword());
 		checkboxLocalCursor.setChecked(selected.getUseLocalCursor());
-		textNickname.setText(selected.getNickname());
+		textNickname.setText("remote-touch"/*selected.getNickname()*/);
 		textUsername.setText(selected.getUserName());
 		COLORMODEL cm = COLORMODEL.valueOf(selected.getColorModel());
 		COLORMODEL[] colors=COLORMODEL.values();

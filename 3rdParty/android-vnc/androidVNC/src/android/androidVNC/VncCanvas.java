@@ -781,23 +781,34 @@ public class VncCanvas extends ImageView {
 	 */
 	private int pointerMask = MOUSE_BUTTON_NONE;
 	
-	private void sendMotionEvent(final MotionEvent e){
-		
+	/** Addition to the andoid-vnc-viewer by NR
+		this methods performs a string serialization of the motion event 
+		via JSON-Objects. the resulting json object is send als text message.
+		atm it's a chatMessage, but this shall be changed to clientcuttext. 
+		this is in order to be received by an older protocol implementation. (ChatMessage is not part of the original Protocol)
+	*/
+	private boolean sendMotionEvent(final MotionEvent e){
+		//TODO change sending from writeChatMessage to writeClientCutText (should be same signature) (->RfbProto.java)
+		//TODO wrap the JSON String in some nice pre and post characters, which can not  accidently be used by clients (like STX ans ETX)
 		try {
-			rfb.writeOpenChat();
-			
+			//rfb.writeOpenChat();
+			Log.d("RemoteTouch", "making JSON Object");
 			try {
 				JSONObject jObj = Helper.CreateJSonObjectFromMotionEvent(e);
-				rfb.writeChatMessage(jObj.toString());
+				Log.d("RemoteTouch","ready to send json object. \n"+jObj.toString());
+				rfb.writeClientCutText(jObj.toString());
+				return true;
 			} catch (JSONException ex) {
 				ex.printStackTrace();
+				return false;
 			}
 			
 				
 
-			rfb.writeCloseChat();
+			//rfb.writeCloseChat();
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
 		
 	}
@@ -812,8 +823,8 @@ public class VncCanvas extends ImageView {
 	 */
 	public boolean processPointerEvent(MotionEvent evt,boolean downEvent)
 	{
-		sendMotionEvent(evt);
-		return processPointerEvent(evt,downEvent,cameraButtonDown);
+		return sendMotionEvent(evt);
+		//return processPointerEvent(evt,downEvent,cameraButtonDown);
 	}
 	
 	/**
@@ -825,8 +836,8 @@ public class VncCanvas extends ImageView {
 	 * @return true if event was actually sent
 	 */
 	public boolean processPointerEvent(MotionEvent evt,boolean downEvent,boolean useRightButton) {
-		sendMotionEvent(evt);
-		return processPointerEvent((int)evt.getX(),(int)evt.getY(), evt.getAction(), evt.getMetaState(), downEvent, useRightButton);
+		return sendMotionEvent(evt);
+		//return processPointerEvent((int)evt.getX(),(int)evt.getY(), evt.getAction(), evt.getMetaState(), downEvent, useRightButton);
 	}
 	
 	boolean processPointerEvent(int x, int y, int action, int modifiers, boolean mouseIsDown, boolean useRightButton) {
