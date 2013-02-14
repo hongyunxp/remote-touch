@@ -20,7 +20,7 @@ android:layout_height="match_parent" android:layout_width="match_parent">
                 android:layout_weight="0.06" android:layout_width="194dp" 
                 android:textAppearance="?android:attr/textAppearanceLarge"></TextView>  
               <TextView                   
-                  android:layout_marginTop="60dip"
+                  android:layout_marginTop="30dip"
                   android:text="hello" android:id="@+id/textView" android:layout_height="wrap_content" android:layout_weight="0.06" android:layout_width="194dp" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
               <Button
                   android:id="@+id/button1"
